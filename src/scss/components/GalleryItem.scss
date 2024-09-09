@@ -1,0 +1,13 @@
+.gallery__item {
+	width: 330px;
+	height: 330px;
+	flex-flow: row wrap;
+	width: calc((100% - 240px) / 3);
+	padding: 20px;
+	&--cover {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 20px;
+	}
+}

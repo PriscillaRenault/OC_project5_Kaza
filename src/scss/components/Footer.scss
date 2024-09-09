@@ -1,0 +1,16 @@
+@use "../utils/main.scss" as utils;
+
+.footer {
+	width: 100%;
+	height: 209px;
+	background-color: utils.$neutral-900;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 57px;
+	&__text {
+		color: utils.$neutral-0;
+		font-size: 24px;
+	}
+}
