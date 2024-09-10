@@ -12,9 +12,7 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	&__title {
-		font-size: 48px;
-		font-weight: 700;
-		color: utils.$neutral-0;
+		@include utils.font(xl, utils.$neutral-0, bold);
 		text-shadow: -1px -1px 0 utils.$outline, 1px -1px 0 utils.$outline,
 			-1px 4px 4px utils.$outline, 1px 1px 0 utils.$outline;
 	}

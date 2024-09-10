@@ -1,14 +1,10 @@
 @use "../utils/main.scss" as utils;
 .gallery {
 	max-width: 1240px;
-	display: flex;
 	margin: auto;
-	padding: 30px 0;
-	flex-wrap: wrap;
-	gap: 20px;
-	align-items: center;
-	justify-content: center;
+	padding: 50px 0;
 	margin-top: 50px;
 	background-color: utils.$neutral-100;
 	border-radius: 20px;
+	@include utils.flexbox(row, center, center, 20, wrap);
 }

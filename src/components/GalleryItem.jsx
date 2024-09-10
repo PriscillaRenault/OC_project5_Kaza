@@ -4,11 +4,13 @@ import "../scss/components/GalleryItem.scss";
 function GalleryItem({ id, cover, title }) {
 	return (
 		<li key={id} className='gallery__item'>
-			<img
-				src={cover}
-				alt={`${title} cover`}
+			<div
 				className='gallery__item--cover'
-			/>
+				style={{
+					backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0, 0, 0, 0.6) 100%), 
+					url(${cover})`,
+				}}
+			></div>
 			<h2 className='gallery__item--title'>{title}</h2>
 		</li>
 	);

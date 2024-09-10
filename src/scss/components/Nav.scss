@@ -1,15 +1,12 @@
+@use "../utils/main.scss" as utils;
 .nav {
 	display: flex;
 	margin-right: 20px;
 	&__list {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		gap: 57px;
+		@include utils.flexbox(row, between, center, 57);
+
 		&--item {
-			font-size: 24px;
-			font-weight: 500;
+			@include utils.font(l, utils.$neutral-900, medium);
 		}
 		&--link.selected {
 			text-decoration: underline;

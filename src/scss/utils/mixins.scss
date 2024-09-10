@@ -1,0 +1,9 @@
+@use "./colors.scss" as colors;
+@use "./fonts.scss" as fonts;
+@use "./flex.scss" as flex;
+
+@mixin font($size, $color, $weight: regular) {
+	font-size: map-get(fonts.$font-size, $size);
+	color: $color;
+	font-weight: map-get(fonts.$font-weight, $weight);
+}
