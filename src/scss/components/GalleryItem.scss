@@ -3,7 +3,7 @@
 	width: 330px;
 	height: 330px;
 	flex-flow: row wrap;
-	width: calc((100% - 240px) / 3);
+	width: calc((100% / 3) - 40px / 3);
 	padding: 20px;
 	position: relative;
 	&--cover {

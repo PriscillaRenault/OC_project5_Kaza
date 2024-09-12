@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import "../scss/components/GalleryItem.scss";
+import HousingDetails from "./HousingDetails";
 
 function GalleryItem({ id, cover, title }) {
 	return (
-		<li key={id} className='gallery__item'>
+		<li key={id} className='gallery__item' onClick={HousingDetails}>
 			<div
 				className='gallery__item--cover'
 				style={{

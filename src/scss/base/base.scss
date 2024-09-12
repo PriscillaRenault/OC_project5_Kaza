@@ -1,4 +1,8 @@
 @use "../utils/main.scss" as utils;
+* {
+	box-sizing: border-box;
+}
+
 html,
 body,
 div,
