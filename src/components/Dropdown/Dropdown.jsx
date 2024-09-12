@@ -1,7 +1,8 @@
-import DropdownItem from "./DropdownItem";
-import "../scss/components/Dropdown.scss";
-import { useState, useEffect } from "react";
+import "../../scss/base/base.scss";
+import "./Dropdown.scss";
+import DropdownItem from "../DropdownItem/DropdownItem";
 import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
 
 function Dropdown({ source }) {
 	const [data, setData] = useState({}); // Initialise l'état 'data' avec un objet vide
@@ -11,9 +12,9 @@ function Dropdown({ source }) {
 
 		// Déterminer le fichier à charger en fonction de la prop 'source'
 		if (source === "about") {
-			jsonFile = "../../public/data/about.json";
+			jsonFile = "/data/about.json";
 		} else if (source === "data") {
-			jsonFile = "../../public/data/data.json";
+			jsonFile = "/data/data.json";
 		}
 
 		fetch(jsonFile)

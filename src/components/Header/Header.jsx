@@ -1,7 +1,7 @@
-import "../scss/base/base.scss";
-import "../scss/components/Header.scss";
-import logo from "../assets/logo_header.png";
-import Nav from "./Nav";
+import "../../scss/base/base.scss";
+import "./Header.scss";
+import logo from "../../assets/logo_header.png";
+import Nav from "../Nav/Nav";
 
 function Header() {
 	return (

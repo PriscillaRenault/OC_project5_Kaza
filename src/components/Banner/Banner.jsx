@@ -1,5 +1,5 @@
-import "../scss/base/base.scss";
-import "../scss/components/Banner.scss";
+import "../../scss/base/base.scss";
+import "./Banner.scss";
 
 function Banner({ title, backgroundImage }) {
 	return (

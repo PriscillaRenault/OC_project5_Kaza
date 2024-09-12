@@ -1,11 +1,12 @@
-import GalleryItem from "./GalleryItem";
-import "../scss/components/Gallery.scss";
+import "../../scss/base/base.scss";
+import "./Gallery.scss";
+import GalleryItem from "../GalleryItem/GalleryItem";
 import { useState, useEffect } from "react";
 
 function Gallery() {
 	const [data, setData] = useState([]); // Initialise l'état 'data' avec un tableau vide
 	useEffect(() => {
-		fetch("../../public/data/data.json")
+		fetch("/data/data.json")
 			.then((response) => response.json()) // Convertit la réponse en JSON
 			.then((jsonData) => setData(jsonData)) // Met à jour l'état 'data' avec les données récupérées
 			.catch((error) =>

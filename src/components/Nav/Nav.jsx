@@ -1,5 +1,5 @@
-import "../scss/base/base.scss";
-import "../scss/components/Nav.scss";
+import "../../scss/base/base.scss";
+import "./Nav.scss";
 import { useState } from "react";
 
 function Nav() {

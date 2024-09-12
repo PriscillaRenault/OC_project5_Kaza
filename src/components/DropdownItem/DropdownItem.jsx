@@ -1,3 +1,5 @@
+import "../../scss/base/base.scss";
+import "./DropdownItem.scss";
 import PropTypes from "prop-types";
 
 function DropdownItem({ children }) {

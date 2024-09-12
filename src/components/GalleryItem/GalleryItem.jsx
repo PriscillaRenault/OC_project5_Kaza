@@ -1,6 +1,7 @@
+import "../../scss/base/base.scss";
+import "./GalleryItem.scss";
 import PropTypes from "prop-types";
-import "../scss/components/GalleryItem.scss";
-import HousingDetails from "./HousingDetails";
+import HousingDetails from "../HousinDetails/HousingDetails";
 
 function GalleryItem({ id, cover, title }) {
 	return (
