@@ -1,7 +1,7 @@
-import "../../scss/base/base.scss";
-import "./GalleryItem.scss";
-import PropTypes from "prop-types";
-import HousingDetails from "../HousinDetails/HousingDetails";
+import '../../scss/base/base.scss'
+import './style.scss'
+import PropTypes from 'prop-types'
+import HousingDetails from '../HousingDetails/index'
 
 function GalleryItem({ id, cover, title }) {
 	return (
@@ -15,12 +15,12 @@ function GalleryItem({ id, cover, title }) {
 			></div>
 			<h2 className='gallery__item--title'>{title}</h2>
 		</li>
-	);
+	)
 }
 
 GalleryItem.propTypes = {
 	id: PropTypes.string.isRequired,
 	cover: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
-};
-export default GalleryItem;
+}
+export default GalleryItem

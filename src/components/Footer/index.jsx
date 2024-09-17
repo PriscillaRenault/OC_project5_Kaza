@@ -1,6 +1,6 @@
-import "../../scss/base/base.scss";
-import "./Footer.scss";
-import logo from "../../assets/logo_footer.png";
+import '../../scss/base/base.scss'
+import './style.scss'
+import logo from '../../assets/logo_footer.png'
 
 function Footer() {
 	return (
@@ -8,7 +8,7 @@ function Footer() {
 			<img src={logo} alt='logo Kaza' className='footer__img' />
 			<p className='footer__text'>© 2020 Kasa. All rights reserved</p>
 		</footer>
-	);
+	)
 }
 
-export default Footer;
+export default Footer
