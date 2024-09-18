@@ -1,4 +1,4 @@
-@use "../../scss/utils/main.scss" as utils;
+@use '../../scss/utils/main.scss' as utils;
 
 .footer {
 	width: 100%;
@@ -7,6 +7,6 @@
 	@include utils.flexbox(column, center, center, 25);
 
 	&__text {
-		@include utils.font(l, utils.$neutral-0);
+		@include utils.font(m, utils.$neutral-0);
 	}
 }

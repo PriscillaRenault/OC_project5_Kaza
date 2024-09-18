@@ -1,11 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-$font: "Montserrat", sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+$font: 'Montserrat', sans-serif;
 
 $font-size: (
+	xxl: 288px,
 	xl: 48px,
-	l: 24px,
-	m: 18px,
-	s: 12px,
+	l: 36px,
+	m: 24px,
+	s: 18px,
+	xs: 12px,
 );
 $font-weight: (
 	regular: 400,

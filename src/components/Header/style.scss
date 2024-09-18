@@ -1,9 +1,10 @@
+@use '../../scss/utils/main.scss' as utils;
+
 .header {
 	max-width: 1240px;
+	width: 100%;
 	height: 68px;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	@include utils.flexbox(row, space-between, center, 20, wrap);
 	margin: 30px auto 0 auto;
 	&__logo {
 		margin-left: 20px;

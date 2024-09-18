@@ -1,4 +1,4 @@
-@use "../../scss/utils/main.scss" as utils;
+@use '../../scss/utils/main.scss' as utils;
 .gallery__item {
 	width: 330px;
 	height: 330px;
@@ -16,7 +16,7 @@
 		z-index: 1;
 	}
 	&--title {
-		@include utils.font(m, utils.$neutral-0, bold);
+		@include utils.font(s, utils.$neutral-0, bold);
 		max-width: 60%;
 		position: absolute;
 		bottom: 30px;

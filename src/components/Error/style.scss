@@ -1,0 +1,18 @@
+@use '../../scss/utils/main.scss' as utils;
+.error {
+	@include utils.flexbox(column, center, center, 100);
+	margin: 50px 0;
+	&__title {
+		@include utils.font(xxl, utils.$primary, bold);
+	}
+	&__message {
+		@include utils.font(l, utils.$primary, medium);
+	}
+	&__redirect {
+		@include utils.font(s, utils.$neutral-900, medium);
+		cursor: pointer;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

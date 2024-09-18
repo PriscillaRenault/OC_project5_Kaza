@@ -7,8 +7,8 @@ $flex: (
 		start: flex-start,
 		end: flex-end,
 		center: center,
-		between: space-between,
-		around: space-around,
+		space-between: space-between,
+		space-around: space-around,
 	),
 	align: (
 		start: flex-start,
@@ -24,6 +24,7 @@ $flex: (
 		15: 15px,
 		25: 25px,
 		57: 57px,
+		100: 75px,
 	),
 	wrap: (
 		nowrap: nowrap,

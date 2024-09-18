@@ -6,7 +6,7 @@
 		@include utils.flexbox(row, between, center, 57);
 
 		&--item {
-			@include utils.font(l, utils.$neutral-900, medium);
+			@include utils.font(m, utils.$neutral-900, medium);
 		}
 		&--link.selected {
 			text-decoration: underline;
