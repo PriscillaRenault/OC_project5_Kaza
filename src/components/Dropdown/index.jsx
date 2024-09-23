@@ -1,25 +1,24 @@
 import '../../scss/base/base.scss'
 import './style.scss'
 import PropTypes from 'prop-types'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { useFetch } from '../../hooks'
 
 function Dropdown({ source }) {
-	const [data, setData] = useState([])
 	const [openIndices, setOpenIndices] = useState([]) // open index state
+	const { data, isLoading, error } = useFetch(source)
 
-	useEffect(() => {
-		let jsonFile = source
-
-		//Recover data from the JSON file
-		fetch(jsonFile)
-			.then((response) => response.json()) // response JSON
-			.then((jsonData) => setData(jsonData)) // update data state
-			.catch((error) =>
-				console.error('Erreur lors du chargement des données', error)
-			)
-	}, [source])
+	// Ici le "?" permet de s'assurer que data existe bien.
+	// Vous pouvez en apprendre davantage sur cette notation ici :
+	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+	if (isLoading) {
+		return <span>Chargement en cours...</span>
+	}
+	if (error) {
+		return <span>Oups il y a eu un problème</span>
+	}
 
 	// Manage the open state of dropdown items
 	const handleToggle = (index, isOpen) => {

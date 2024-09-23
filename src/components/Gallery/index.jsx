@@ -1,18 +1,21 @@
 import '../../scss/base/base.scss'
 import './style.scss'
 import GalleryItem from '../GalleryItem/index'
-import { useState, useEffect } from 'react'
+import { useFetch } from '../../hooks'
 
 function Gallery() {
-	const [data, setData] = useState([]) // Initialise l'état 'data' avec un tableau vide
-	useEffect(() => {
-		fetch('/data/data.json')
-			.then((response) => response.json()) // Convertit la réponse en JSON
-			.then((jsonData) => setData(jsonData)) // Met à jour l'état 'data' avec les données récupérées
-			.catch((error) =>
-				console.error('Erreur lors du chargement des données', error)
-			) // Gère les erreurs
-	}, [])
+	const { data, isLoading, error } = useFetch(`/data/data.json`)
+
+	// Ici le "?" permet de s'assurer que data existe bien.
+	// Vous pouvez en apprendre davantage sur cette notation ici :
+	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+	if (isLoading) {
+		return <span>Chargement en cours...</span>
+	}
+	if (error) {
+		return <span>Oups il y a eu un problème</span>
+	}
+
 	return (
 		<ul className='gallery'>
 			{data.map((item) => (
