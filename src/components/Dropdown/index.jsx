@@ -6,55 +6,56 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 function Dropdown({ source }) {
-	const [data, setData] = useState([]) // Initialise l'état 'data' avec un tableau vide
-	const [openIndices, setOpenIndices] = useState([]) // Stocke les indices ouverts
+	const [data, setData] = useState([])
+	const [openIndices, setOpenIndices] = useState([]) // open index state
 
 	useEffect(() => {
 		let jsonFile = source
 
+		//Recover data from the JSON file
 		fetch(jsonFile)
-			.then((response) => response.json()) // Convertit la réponse en JSON
-			.then((jsonData) => setData(jsonData)) // Met à jour l'état 'data' avec les données récupérées
+			.then((response) => response.json()) // response JSON
+			.then((jsonData) => setData(jsonData)) // update data state
 			.catch((error) =>
 				console.error('Erreur lors du chargement des données', error)
 			)
 	}, [source])
 
-	// Fonction pour gérer l'ouverture/fermeture de chaque élément via 'onToggle'
+	// Manage the open state of dropdown items
 	const handleToggle = (index, isOpen) => {
 		if (isOpen) {
-			// Si l'élément est ouvert, ajouter son index à 'openIndices'
+			// If the element is open, add its index to 'openIndices'
 			setOpenIndices([...openIndices, index])
 		} else {
-			// Si l'élément est fermé, retirer son index de 'openIndices'
+			// If the element is close, remove its index to 'openIndices'
 			setOpenIndices(openIndices.filter((i) => i !== index))
 		}
 	}
 
-	// Générer le contenu des DropdownItems
+	// Render dropdown items
 	const renderDropdownItems = () => {
 		if (!data || data.length === 0) {
 			return <p>Aucune donnée à afficher</p>
 		}
 
 		return data.map((item, index) => (
-			<div key={index} className='dropdown-item'>
+			<div key={index} className='dropdown__item'>
 				<details
 					open={openIndices.includes(index)} // Ouvre uniquement si l'index est dans 'openIndices'
-					onToggle={(e) => handleToggle(index, e.target.open)} // Utilise 'onToggle' pour gérer l'état d'ouverture
+					onToggle={(e) => handleToggle(index, e.target.open)} //  onToggle event open/close dropdown item
 				>
-					<summary>
-						{item.title}
+					<summary className='dropdown__title'>
+						<p>{item.title}</p>
 						<FontAwesomeIcon
 							icon={
 								openIndices.includes(index)
 									? faChevronUp
 									: faChevronDown
-							} // Change l'icône en fonction de l'état
-							className='dropdown-icon'
+							} // Change icon with open state
+							className='dropdown__icon'
 						/>
 					</summary>
-					<div className='dropdown-content'>
+					<div className='dropdown__content'>
 						<p>{item.content}</p>
 					</div>
 				</details>
@@ -66,7 +67,7 @@ function Dropdown({ source }) {
 }
 
 Dropdown.propTypes = {
-	source: PropTypes.string.isRequired, // 'source' doit être une chaîne de caractères
+	source: PropTypes.string.isRequired,
 }
 
 export default Dropdown

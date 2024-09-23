@@ -1,1 +1,25 @@
-@use "../../scss/utils/main.scss" as utils;
+@use '../../scss/utils/main.scss' as utils;
+.dropdown {
+	@include utils.flexbox(column, center, center, 30);
+	max-width: 1240px;
+	margin: 30px auto;
+	&__item {
+		width: 70%;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	&__title {
+		@include utils.flexbox(row, space-between, center, 30);
+		padding: 10px;
+		border-radius: 5px;
+		color: utils.$neutral-0;
+		background-color: utils.$primary;
+	}
+	&__content {
+		background-color: utils.$neutral-100;
+		color: utils.$neutral-900;
+		border-radius: 5px;
+		padding: 10px 20px;
+	}
+}
