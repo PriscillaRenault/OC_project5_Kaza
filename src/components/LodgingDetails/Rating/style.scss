@@ -1,0 +1,15 @@
+@use '../../../scss/utils/main.scss' as utils;
+.rating {
+	@include utils.flexbox(row, end, end, 5);
+	max-width: 1240px;
+	width: 100%;
+	margin: 20px auto;
+
+	&__star {
+		font-size: 1.5rem;
+		color: utils.$neutral-200; // Couleur par défaut : gris
+		&--filled {
+			color: utils.$primary; // Couleur rouge pour les étoiles remplies
+		}
+	}
+}

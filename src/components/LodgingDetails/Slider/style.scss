@@ -1,0 +1,51 @@
+@use '../../../scss/utils/main.scss' as utils;
+
+// Styles pour le slider
+.slider {
+	position: relative;
+	max-width: 1240px;
+	margin: auto;
+	width: 100%;
+	height: 415px;
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		z-index: 1;
+	}
+
+	&__img {
+		width: 100%;
+		height: 415px;
+		object-fit: cover;
+	}
+
+	&__counter {
+		position: absolute;
+		top: 90%; // Centrer verticalement
+		left: 50%; // Centrer horizontalement
+		transform: translate(-50%, -50%); // Ajuster pour centrer parfaitement
+		padding: 5px 10px;
+		border-radius: 5px;
+		@include utils.font(s, utils.$neutral-0);
+	}
+
+	&__controls {
+		position: absolute;
+		top: 50%;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		transform: translateY(-50%);
+		z-index: 2;
+	}
+
+	&__chevron {
+		cursor: pointer;
+		@include utils.font(l, utils.$neutral-0, bold);
+		padding: 0 1rem;
+	}
+}

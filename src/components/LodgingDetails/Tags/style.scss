@@ -1,0 +1,13 @@
+@use '../../../scss/utils/main.scss' as utils;
+.tag {
+	@include utils.flexbox(row, start, center, 10, nowrap);
+	max-width: 1240px;
+	width: 100%;
+	margin: 20px auto;
+	&__items {
+		@include utils.font(xs, utils.$neutral-0, bold);
+		background-color: utils.$primary;
+		padding: 5px 10px;
+		border-radius: 10px;
+	}
+}

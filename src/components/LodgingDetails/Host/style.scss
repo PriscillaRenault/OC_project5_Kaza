@@ -1,0 +1,19 @@
+@use '../../../scss/utils/main.scss' as utils;
+
+.host {
+	@include utils.flexbox(row, end, center, 10);
+	max-width: 1240px;
+	width: 100%;
+	margin: 20px auto;
+
+	&__name {
+		flex-wrap: wrap;
+		@include utils.font(s, utils.$primary, medium);
+		text-align: right;
+	}
+	&__img {
+		width: 64px;
+		height: 64px;
+		border-radius: 50%;
+	}
+}

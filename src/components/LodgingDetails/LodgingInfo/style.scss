@@ -1,0 +1,13 @@
+@use '../../../scss/utils/main.scss' as utils;
+.lodging {
+	@include utils.flexbox(column, start, start, 10, nowrap);
+	max-width: 1240px;
+	width: 100%;
+	margin: 20px auto;
+	&__title {
+		@include utils.font(l, utils.$primary, medium);
+	}
+	&__location {
+		@include utils.font(s, utils.$neutral-900);
+	}
+}

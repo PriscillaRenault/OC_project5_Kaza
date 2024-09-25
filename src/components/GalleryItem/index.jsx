@@ -1,11 +1,10 @@
 import '../../scss/base/base.scss'
 import './style.scss'
 import PropTypes from 'prop-types'
-import HousingDetails from '../HousingDetails/index'
 
-function GalleryItem({ id, cover, title }) {
+function GalleryItem({ id, cover, title, onClick }) {
 	return (
-		<li key={id} className='gallery__item' onClick={HousingDetails}>
+		<li key={id} className='gallery__item' onClick={onClick}>
 			<div
 				className='gallery__item--cover'
 				style={{
@@ -22,5 +21,6 @@ GalleryItem.propTypes = {
 	id: PropTypes.string.isRequired,
 	cover: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
+	onClick: PropTypes.func.isRequired,
 }
 export default GalleryItem

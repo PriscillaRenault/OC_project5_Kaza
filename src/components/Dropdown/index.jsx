@@ -1,3 +1,4 @@
+//partager le contexte
 import '../../scss/base/base.scss'
 import './style.scss'
 import PropTypes from 'prop-types'
@@ -6,27 +7,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { useFetch } from '../../hooks'
 
-function Dropdown({ source }) {
+function Dropdown({ source, dataToggle }) {
 	const [openIndices, setOpenIndices] = useState([]) // open index state
 	const { data, isLoading, error } = useFetch(source)
 
-	// Ici le "?" permet de s'assurer que data existe bien.
-	// Vous pouvez en apprendre davantage sur cette notation ici :
-	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Optional_chaining
 	if (isLoading) {
 		return <span>Chargement en cours...</span>
 	}
 	if (error) {
-		return <span>Oups il y a eu un problème</span>
+		return <span>Problème lors du chargement des données</span>
 	}
 
-	// Manage the open state of dropdown items
 	const handleToggle = (index, isOpen) => {
 		if (isOpen) {
-			// If the element is open, add its index to 'openIndices'
 			setOpenIndices([...openIndices, index])
 		} else {
-			// If the element is close, remove its index to 'openIndices'
 			setOpenIndices(openIndices.filter((i) => i !== index))
 		}
 	}
@@ -37,29 +32,76 @@ function Dropdown({ source }) {
 			return <p>Aucune donnée à afficher</p>
 		}
 
-		return data.map((item, index) => (
-			<div key={index} className='dropdown__item'>
-				<details
-					open={openIndices.includes(index)} // Ouvre uniquement si l'index est dans 'openIndices'
-					onToggle={(e) => handleToggle(index, e.target.open)} //  onToggle event open/close dropdown item
-				>
-					<summary className='dropdown__title'>
-						<p>{item.title}</p>
-						<FontAwesomeIcon
-							icon={
-								openIndices.includes(index)
-									? faChevronUp
-									: faChevronDown
-							} // Change icon with open state
-							className='dropdown__icon'
-						/>
-					</summary>
-					<div className='dropdown__content'>
-						<p>{item.content}</p>
-					</div>
-				</details>
-			</div>
-		))
+		if (source === '/data/about.json') {
+			return data.map((item, index) => (
+				<div key={index} className='dropdown__item'>
+					<details
+						open={openIndices.includes(index)}
+						onToggle={(e) => handleToggle(index, e.target.open)}
+					>
+						<summary className='dropdown__title'>
+							<p>{item.title}</p>
+							<FontAwesomeIcon
+								icon={
+									openIndices.includes(index)
+										? faChevronUp
+										: faChevronDown
+								}
+								className='dropdown__icon'
+							/>
+						</summary>
+						<div className='dropdown__content'>
+							<p>{item.content}</p>
+						</div>
+					</details>
+				</div>
+			))
+		}
+
+		if (dataToggle === 'equipments') {
+			return data.map((item, index) => (
+				<div key={index} className='dropdown__item'>
+					<details
+						open={openIndices.includes(index)}
+						onToggle={(e) => handleToggle(index, e.target.open)}
+					>
+						<summary className='dropdown__title'>
+							<p>{`Équipement ${index + 1}`}</p>
+							<FontAwesomeIcon
+								icon={
+									openIndices.includes(index)
+										? faChevronUp
+										: faChevronDown
+								}
+								className='dropdown__icon'
+							/>
+						</summary>
+						<div className='dropdown__content'>
+							<p>{item}</p>
+						</div>
+					</details>
+				</div>
+			))
+		}
+
+		if (dataToggle === 'description') {
+			return (
+				<div className='dropdown__item'>
+					<details open>
+						<summary className='dropdown__title'>
+							<p>Description</p>
+							<FontAwesomeIcon
+								icon={faChevronDown}
+								className='dropdown__icon'
+							/>
+						</summary>
+						<div className='dropdown__content'>
+							<p>{data}</p>
+						</div>
+					</details>
+				</div>
+			)
+		}
 	}
 
 	return <div className='dropdown'>{renderDropdownItems()}</div>
@@ -67,6 +109,7 @@ function Dropdown({ source }) {
 
 Dropdown.propTypes = {
 	source: PropTypes.string.isRequired,
+	dataToggle: PropTypes.string,
 }
 
 export default Dropdown

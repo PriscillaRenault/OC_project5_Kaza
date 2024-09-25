@@ -2,18 +2,21 @@ import '../../scss/base/base.scss'
 import './style.scss'
 import GalleryItem from '../GalleryItem/index'
 import { useFetch } from '../../hooks'
+import { useNavigate } from 'react-router-dom'
 
 function Gallery() {
 	const { data, isLoading, error } = useFetch(`/data/data.json`)
+	const navigate = useNavigate()
 
-	// Ici le "?" permet de s'assurer que data existe bien.
-	// Vous pouvez en apprendre davantage sur cette notation ici :
-	// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Optional_chaining
 	if (isLoading) {
 		return <span>Chargement en cours...</span>
 	}
 	if (error) {
-		return <span>Oups il y a eu un problème</span>
+		return <span>Problème lors du chargement des données</span>
+	}
+
+	const handleClick = (id) => {
+		navigate(`/Lodging/${id}`)
 	}
 
 	return (
@@ -24,6 +27,7 @@ function Gallery() {
 					id={item.id}
 					cover={item.cover}
 					title={item.title}
+					onClick={() => handleClick(item.id)}
 				/>
 			))}
 		</ul>
