@@ -2,15 +2,17 @@
 import '../../scss/base/base.scss'
 import './style.scss'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import { useFetch } from '../../hooks'
+import { useFetch } from '../../utils/hooks'
+import { IdLodgingContext } from '../../utils/context'
 
-function Dropdown({ source, dataToggle }) {
+function Dropdown({ source, dataToggle, dataLodgingId }) {
 	const [openIndices, setOpenIndices] = useState([]) // open index state
 	const { data, isLoading, error } = useFetch(source)
-
+	const { lodgingId } = useContext(IdLodgingContext)
+	const validLodgingId = dataLodgingId || lodgingId
 	if (isLoading) {
 		return <span>Chargement en cours...</span>
 	}
@@ -57,50 +59,84 @@ function Dropdown({ source, dataToggle }) {
 				</div>
 			))
 		}
+		if (source === '/data/data.json') {
+			// Filtrer les données pour trouver l'élément correspondant à validLodgingId
+			const lodging = data.find((item) => item.id === validLodgingId)
 
-		if (dataToggle === 'equipments') {
-			return data.map((item, index) => (
-				<div key={index} className='dropdown__item'>
-					<details
-						open={openIndices.includes(index)}
-						onToggle={(e) => handleToggle(index, e.target.open)}
-					>
-						<summary className='dropdown__title'>
-							<p>{`Équipement ${index + 1}`}</p>
-							<FontAwesomeIcon
-								icon={
-									openIndices.includes(index)
-										? faChevronUp
-										: faChevronDown
+			// Si l'hébergement n'est pas trouvé
+			if (!lodging) {
+				return <span>Aucun hébergement trouvé</span>
+			}
+
+			// Gestion des équipements
+			if (dataToggle === 'equipments') {
+				const isOpen = openIndices.includes(0) // Vérifie si le premier (et unique) dropdown est ouvert
+				return (
+					<div className='dropdown__item'>
+						<details
+							open={isOpen}
+							onToggle={() => {
+								if (isOpen) {
+									setOpenIndices(
+										openIndices.filter(
+											(index) => index !== 0
+										)
+									) // Fermer
+								} else {
+									setOpenIndices([...openIndices, 0]) // Ouvrir
 								}
-								className='dropdown__icon'
-							/>
-						</summary>
-						<div className='dropdown__content'>
-							<p>{item}</p>
-						</div>
-					</details>
-				</div>
-			))
-		}
+							}}
+						>
+							<summary className='dropdown__title'>
+								<p>Équipements</p>
+								<FontAwesomeIcon
+									icon={isOpen ? faChevronUp : faChevronDown}
+									className='dropdown__icon'
+								/>
+							</summary>
+							<div className='dropdown__content'>
+								{lodging.equipments.map((item, index) => (
+									<p key={index}>{item}</p>
+								))}
+							</div>
+						</details>
+					</div>
+				)
+			}
 
-		if (dataToggle === 'description') {
-			return (
-				<div className='dropdown__item'>
-					<details open>
-						<summary className='dropdown__title'>
-							<p>Description</p>
-							<FontAwesomeIcon
-								icon={faChevronDown}
-								className='dropdown__icon'
-							/>
-						</summary>
-						<div className='dropdown__content'>
-							<p>{data}</p>
-						</div>
-					</details>
-				</div>
-			)
+			// Gestion de la description
+			if (dataToggle === 'description') {
+				const isOpen = openIndices.includes(1) // Vérifie si le dropdown de description est ouvert
+				return (
+					<div className='dropdown__item'>
+						<details
+							open={isOpen}
+							onToggle={() => {
+								if (isOpen) {
+									setOpenIndices(
+										openIndices.filter(
+											(index) => index !== 1
+										)
+									) // Fermer
+								} else {
+									setOpenIndices([...openIndices, 1]) // Ouvrir
+								}
+							}}
+						>
+							<summary className='dropdown__title'>
+								<p>Description</p>
+								<FontAwesomeIcon
+									icon={isOpen ? faChevronUp : faChevronDown}
+									className='dropdown__icon'
+								/>
+							</summary>
+							<div className='dropdown__content'>
+								<p>{lodging.description}</p>
+							</div>
+						</details>
+					</div>
+				)
+			}
 		}
 	}
 
@@ -110,6 +146,7 @@ function Dropdown({ source, dataToggle }) {
 Dropdown.propTypes = {
 	source: PropTypes.string.isRequired,
 	dataToggle: PropTypes.string,
+	dataLodgingId: PropTypes.string,
 }
 
 export default Dropdown

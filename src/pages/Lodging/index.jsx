@@ -6,11 +6,18 @@ import Host from '../../components/LodgingDetails/Host'
 import Dropdown from '../../components/Dropdown'
 import Error from '../../components/Error'
 import { useParams } from 'react-router-dom'
-import { useFetch } from '../../hooks'
+import { useFetch } from '../../utils/hooks'
+import { useContext, useEffect } from 'react'
+import { IdLodgingContext } from '../../utils/context'
 
 function Lodging() {
 	const { id } = useParams()
 	const { data, isLoading, error } = useFetch(`/data/data.json`)
+	const { setLodgingId } = useContext(IdLodgingContext)
+
+	useEffect(() => {
+		setLodgingId(id)
+	}, [id, setLodgingId])
 
 	if (isLoading) {
 		return <span>Chargement en cours...</span>

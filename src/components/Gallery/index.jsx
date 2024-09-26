@@ -1,7 +1,7 @@
 import '../../scss/base/base.scss'
 import './style.scss'
 import GalleryItem from '../GalleryItem/index'
-import { useFetch } from '../../hooks'
+import { useFetch } from '../../utils/hooks'
 import { useNavigate } from 'react-router-dom'
 
 function Gallery() {
