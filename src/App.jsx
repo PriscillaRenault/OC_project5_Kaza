@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/index'
 import Lodging from './pages/Lodging/index'
 import About from './pages/About/index'
-import Error from './components/Error/index'
+import Error from './pages/Error/index'
 import Header from './components/Header/index'
 import Footer from './components/Footer/index'
 
