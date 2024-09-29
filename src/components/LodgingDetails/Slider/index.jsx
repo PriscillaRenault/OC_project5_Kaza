@@ -14,6 +14,20 @@ function Slider({ pictures }) {
 		return <span>Aucune image à afficher</span>
 	}
 
+	if (pictures.length === 1) {
+		return (
+			<div className='slider'>
+				<div className='slider__item'>
+					<img
+						className='slider__img'
+						src={pictures[0]}
+						alt='Image 1'
+					/>
+				</div>
+			</div>
+		)
+	}
+
 	// Fonction pour aller à l'image suivante
 	const nextSlide = () => {
 		setCurrentIndex((prevIndex) =>

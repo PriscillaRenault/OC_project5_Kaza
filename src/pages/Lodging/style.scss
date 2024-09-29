@@ -1,0 +1,28 @@
+@use '../../scss/utils/main.scss' as utils;
+.lodging-page {
+	@include utils.flexbox(row, space-between, center);
+	max-width: 1240px;
+	margin: auto;
+
+	&__dropdown {
+		max-width: 1240px;
+		margin: 0 auto 20px auto;
+		@include utils.flexbox(row, space-between, start);
+		&--items {
+			width: 500px;
+		}
+	}
+}
+@media screen and (max-width: 768px) {
+	.lodging-page {
+		@include utils.flexbox(column, center, start);
+		margin: auto;
+		&__host-rating {
+			@include utils.flexbox(row-reverse, space-between, center);
+			width: 100%;
+		}
+		&__dropdown {
+			@include utils.flexbox(column, center, center);
+		}
+	}
+}

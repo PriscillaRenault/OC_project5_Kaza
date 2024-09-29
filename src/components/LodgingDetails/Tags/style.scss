@@ -2,12 +2,22 @@
 .tag {
 	@include utils.flexbox(row, start, center, 10, nowrap);
 	max-width: 1240px;
-	width: 100%;
-	margin: 20px auto;
+	margin: 10px 10px;
 	&__items {
-		@include utils.font(xs, utils.$neutral-0, bold);
+		@include utils.font(14px, utils.$neutral-0, bold);
 		background-color: utils.$primary;
-		padding: 5px 10px;
+		padding: 5px 20px;
 		border-radius: 10px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.tag {
+		margin: 0 10px;
+		&__items {
+			@include utils.font(10px, utils.$neutral-0, bold);
+			border-radius: 5px;
+			padding: 5px 10px;
+		}
 	}
 }

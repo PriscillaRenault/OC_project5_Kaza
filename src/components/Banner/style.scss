@@ -1,19 +1,30 @@
-@use "../../scss/utils/main.scss" as utils;
+@use '../../scss/utils/main.scss' as utils;
 .banner {
 	max-width: 1240px;
 	height: 223px;
 	margin: 20px auto;
 	box-shadow: 0px 3px 3px utils.$shadow;
 	border-radius: 20px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@include utils.flexbox(row, center, center);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	&__title {
-		@include utils.font(xl, utils.$neutral-0, bold);
+		@include utils.font(48px, utils.$neutral-0, bold);
 		text-shadow: -1px -1px 0 utils.$outline, 1px -1px 0 utils.$outline,
 			-1px 4px 4px utils.$outline, 1px 1px 0 utils.$outline;
+	}
+}
+@media screen and (max-width: 768px) {
+	.banner {
+		@include utils.flexbox(row, start, center);
+		height: 111px;
+		margin: 10px;
+		padding: 0 20px;
+
+		&__title {
+			@include utils.font(24px, utils.$neutral-0, bold);
+			text-align: left;
+		}
 	}
 }

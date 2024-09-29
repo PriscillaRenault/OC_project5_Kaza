@@ -3,17 +3,27 @@
 .host {
 	@include utils.flexbox(row, end, center, 10);
 	max-width: 1240px;
-	width: 100%;
-	margin: 20px auto;
+	margin: 20px 10px;
 
 	&__name {
-		flex-wrap: wrap;
-		@include utils.font(s, utils.$primary, medium);
+		@include utils.font(18px, utils.$primary, medium);
 		text-align: right;
 	}
 	&__img {
 		width: 64px;
 		height: 64px;
 		border-radius: 50%;
+	}
+}
+@media screen and (max-width: 768px) {
+	.host {
+		margin: 10px;
+		&__name {
+			@include utils.font(12px, utils.$primary, medium);
+		}
+		&__img {
+			width: 32px;
+			height: 32px;
+		}
 	}
 }

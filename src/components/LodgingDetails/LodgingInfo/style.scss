@@ -3,11 +3,22 @@
 	@include utils.flexbox(column, start, start, 10, nowrap);
 	max-width: 1240px;
 	width: 100%;
-	margin: 20px auto;
+	margin: 20px 10px;
 	&__title {
-		@include utils.font(l, utils.$primary, medium);
+		@include utils.font(36px, utils.$primary, medium);
 	}
 	&__location {
-		@include utils.font(s, utils.$neutral-900);
+		@include utils.font(18px, utils.$neutral-900);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.lodging {
+		&__title {
+			@include utils.font(18px, utils.$primary, medium);
+		}
+		&__location {
+			@include utils.font(12px, utils.$neutral-900);
+		}
 	}
 }

@@ -2,14 +2,22 @@
 .rating {
 	@include utils.flexbox(row, end, end, 5);
 	max-width: 1240px;
-	width: 100%;
-	margin: 20px auto;
+	margin: 10px 10px;
 
 	&__star {
-		font-size: 1.5rem;
+		font-size: 24px;
 		color: utils.$neutral-200; // Couleur par défaut : gris
 		&--filled {
 			color: utils.$primary; // Couleur rouge pour les étoiles remplies
+		}
+	}
+}
+@media screen and (max-width: 768px) {
+	.rating {
+		@include utils.flexbox(row, start, center, 0);
+		margin: 10px;
+		&__star {
+			font-size: 18px;
 		}
 	}
 }

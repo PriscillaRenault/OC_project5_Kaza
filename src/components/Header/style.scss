@@ -5,8 +5,18 @@
 	width: 100%;
 	height: 68px;
 	@include utils.flexbox(row, space-between, center, 20, wrap);
-	margin: 30px auto 0 auto;
+	margin: 20px auto;
 	&__logo {
 		margin-left: 20px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.header {
+		height: 46px;
+		margin: 10px;
+		&__logo {
+			margin: 0;
+			height: 43px;
+		}
 	}
 }

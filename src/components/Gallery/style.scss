@@ -1,4 +1,4 @@
-@use "../../scss/utils/main.scss" as utils;
+@use '../../scss/utils/main.scss' as utils;
 .gallery {
 	max-width: 1240px;
 	margin: auto;
@@ -7,4 +7,12 @@
 	background-color: utils.$neutral-100;
 	border-radius: 20px;
 	@include utils.flexbox(row, center, center, 20, wrap);
+}
+@media screen and (max-width: 768px) {
+	.gallery {
+		@include utils.flexbox(column, center, center, 22, wrap);
+		background-color: utils.$neutral-0;
+		padding: 0;
+		margin-top: 0;
+	}
 }

@@ -3,13 +3,21 @@
 	display: flex;
 	margin-right: 20px;
 	&__list {
-		@include utils.flexbox(row, between, center, 57);
+		@include utils.flexbox(row, end, center, 57);
 
 		&--item {
-			@include utils.font(m, utils.$neutral-900, medium);
+			@include utils.font(24px, utils.$neutral-900, medium);
 		}
 		&--link.selected {
 			text-decoration: underline;
+		}
+	}
+}
+@media screen and (max-width: 768px) {
+	.nav__list {
+		@include utils.flexbox(row, end, center, 26);
+		&--item {
+			@include utils.font(12px, utils.$neutral-900, medium);
 		}
 	}
 }

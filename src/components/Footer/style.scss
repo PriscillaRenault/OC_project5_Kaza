@@ -7,6 +7,11 @@
 	@include utils.flexbox(column, center, center, 25);
 
 	&__text {
-		@include utils.font(m, utils.$neutral-0);
+		@include utils.font(24px, utils.$neutral-0);
+	}
+}
+@media screen and (max-width: 768px) {
+	.footer__text {
+		@include utils.font(12px, utils.$neutral-0);
 	}
 }

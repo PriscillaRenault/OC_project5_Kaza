@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import { useFetch } from '../../utils/hooks'
 import { useContext, useEffect } from 'react'
 import { IdLodgingContext } from '../../utils/context'
+import './style.scss'
 
 function Lodging() {
 	const { id } = useParams()
@@ -33,17 +34,18 @@ function Lodging() {
 	}
 
 	return (
-		<>
+		<div>
 			<Slider pictures={lodging.pictures} />
-			<div>
-				<div>
+			<div className='lodging-page'>
+				<div className='lodging-page__text'>
 					<LodgingInfo
+						className='lodging-page__text--title'
 						title={lodging.title}
 						location={lodging.location}
 					/>
 					<Tags dataTags={lodging.tags} />
 				</div>
-				<div>
+				<div className='lodging-page__host-rating'>
 					<Host
 						name={lodging.host.name}
 						picture={lodging.host.picture}
@@ -51,11 +53,19 @@ function Lodging() {
 					<Rating dataRating={lodging.rating} />
 				</div>
 			</div>
-			<div>
-				<Dropdown source='/data/data.json' dataToggle='equipments' />
-				<Dropdown source='/data/data.json' dataToggle='description' />
+			<div className='lodging-page__dropdown'>
+				<Dropdown
+					source='/data/data.json'
+					dataToggle='equipments'
+					className='lodging-page__dropdown--items'
+				/>
+				<Dropdown
+					source='/data/data.json'
+					dataToggle='description'
+					className='lodging-page__dropdown--items'
+				/>
 			</div>
-		</>
+		</div>
 	)
 }
 export default Lodging

@@ -1,18 +1,33 @@
 @use '../../scss/utils/main.scss' as utils;
 .error {
-	@include utils.flexbox(column, center, center, 100);
-	margin: 50px 0;
+	@include utils.flexbox(column, space-around, center, 100);
+	margin: 100px 0;
 	&__title {
-		@include utils.font(xxl, utils.$primary, bold);
+		@include utils.font(288px, utils.$primary, bold);
 	}
 	&__message {
-		@include utils.font(l, utils.$primary, medium);
+		@include utils.font(36px, utils.$primary, medium);
+		text-align: center;
 	}
 	&__redirect {
-		@include utils.font(s, utils.$neutral-900, medium);
+		@include utils.font(18px, utils.$neutral-900, medium);
 		cursor: pointer;
 		&:hover {
 			text-decoration: underline;
+		}
+	}
+}
+@media screen and (max-width: 768px) {
+	.error {
+		@include utils.flexbox(column, space-around, center, 113);
+		&__title {
+			@include utils.font(96px, utils.$primary, bold);
+		}
+		&__message {
+			@include utils.font(18px, utils.$primary, medium);
+		}
+		&__redirect {
+			@include utils.font(14px, utils.$neutral-900, medium);
 		}
 	}
 }

@@ -1,25 +1,56 @@
 @use '../../scss/utils/main.scss' as utils;
 .dropdown {
-	@include utils.flexbox(column, center, center, 30);
-	max-width: 1240px;
-	margin: 30px auto;
-	&__item {
-		width: 70%;
-		&:hover {
-			cursor: pointer;
-		}
+	background-color: utils.$primary;
+	border-radius: 5px;
+	margin: 20px 10px;
+	&:hover {
+		cursor: pointer;
 	}
 	&__title {
 		@include utils.flexbox(row, space-between, center, 30);
 		padding: 10px;
-		border-radius: 5px;
-		color: utils.$neutral-0;
-		background-color: utils.$primary;
+		@include utils.font(18px, utils.$neutral-0, bold);
 	}
 	&__content {
+		@include utils.font(18px, utils.$neutral-900, regular);
 		background-color: utils.$neutral-100;
+		line-height: 1.5;
+		padding: 10px;
+		border-radius: 0 0 5px 5px;
+	}
+
+	&__about {
+		width: 80%;
 		color: utils.$neutral-900;
+		margin: auto;
 		border-radius: 5px;
-		padding: 10px 20px;
+	}
+	&__lodging {
+		width: calc((100% - 76px) / 2);
+		margin-bottom: 20px;
+	}
+}
+.about {
+	@include utils.flexbox(column, center, center, 25);
+	margin: 30px 10px;
+}
+@media screen and (max-width: 768px) {
+	.dropdown {
+		&__title {
+			@include utils.font(13px, utils.$neutral-0, bold);
+		}
+		&__content {
+			@include utils.font(12px, utils.$neutral-900, regular);
+		}
+		&__about {
+			width: 100%;
+		}
+		&__lodging {
+			width: 97%;
+			margin: 10px;
+		}
+	}
+	.about {
+		margin: 20px 10px;
 	}
 }
