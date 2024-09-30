@@ -9,13 +9,21 @@
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	&[data-background] {
+	&-home {
 		background-image: linear-gradient(
 				rgba(0, 0, 0, 0.6),
 				rgba(0, 0, 0, 0.6)
 			),
-			url(attr(data-background));
+			url('../../assets/img_banner_home.png');
 	}
+	&-about {
+		background-image: linear-gradient(
+				rgba(0, 0, 0, 0.6),
+				rgba(0, 0, 0, 0.6)
+			),
+			url('../../assets/img_banner_about.png');
+	}
+
 	&__title {
 		@include utils.font(48px, utils.$neutral-0, bold);
 		text-shadow: -1px -1px 0 utils.$outline, 1px -1px 0 utils.$outline,

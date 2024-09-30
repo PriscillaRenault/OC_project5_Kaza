@@ -1,4 +1,3 @@
-import ImgBannerHome from '../../assets/img_banner_home.png'
 import Banner from '../../components/Banner'
 import Gallery from '../../components/Gallery'
 
@@ -7,7 +6,7 @@ function Home() {
 		<div>
 			<Banner
 				title='Chez vous, partout et ailleurs'
-				backgroundImage={ImgBannerHome}
+				backgroundImageClass='banner-home'
 			/>
 			<Gallery />
 		</div>

@@ -1,9 +1,9 @@
-import '../../scss/base/base.scss'
+// import '../../scss/base/base.scss'
 import './style.scss'
 
-function Banner({ title, backgroundImage }) {
+function Banner({ title, backgroundImageClass }) {
 	return (
-		<div className='banner' data-background={backgroundImage}>
+		<div className={`banner ${backgroundImageClass}`}>
 			<h1 className='banner__title'>{title}</h1>
 		</div>
 	)
@@ -12,7 +12,7 @@ function Banner({ title, backgroundImage }) {
 import PropTypes from 'prop-types'
 Banner.propTypes = {
 	title: PropTypes.string.isRequired,
-	backgroundImage: PropTypes.string.isRequired,
+	backgroundImageClass: PropTypes.string.isRequired,
 }
 
 export default Banner
