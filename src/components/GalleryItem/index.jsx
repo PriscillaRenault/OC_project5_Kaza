@@ -2,6 +2,15 @@ import '../../scss/base/base.scss'
 import './style.scss'
 import PropTypes from 'prop-types'
 
+/**
+ * Create item in gallery
+ * @param {string} id - id of the lodging
+ * @param {string} cover - cover image of the lodging
+ * @param {string} title - title of the lodging
+ * @param {function} onClick - function to access the lodging page
+ * @returns
+ */
+
 function GalleryItem({ id, cover, title, onClick }) {
 	return (
 		<li

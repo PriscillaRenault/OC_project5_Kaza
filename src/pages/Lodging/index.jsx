@@ -53,12 +53,12 @@ function Lodging() {
 			<div className='lodging-page__dropdown'>
 				<Dropdown
 					source='/data/data.json'
-					dataToggle='equipments'
+					dataToggle='description'
 					className='lodging-page__dropdown--items'
 				/>
 				<Dropdown
 					source='/data/data.json'
-					dataToggle='description'
+					dataToggle='equipments'
 					className='lodging-page__dropdown--items'
 				/>
 			</div>

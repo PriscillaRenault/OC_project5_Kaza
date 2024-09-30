@@ -7,6 +7,13 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { useFetch } from '../../utils/hooks'
 import { IdLodgingContext } from '../../utils/context'
 
+/**
+ * Create dropdown component use on about page () and lodging page to display equipments and description
+ * @param {string} source - The source of the data
+ * @param {string} dataToggle - The data to display equipments / description
+ * @param {string} dataLodgingId - The id of the lodging
+ */
+
 function Dropdown({ source, dataToggle, dataLodgingId }) {
 	const [openIndices, setOpenIndices] = useState([]) // open index state
 	const { data, isLoading, error } = useFetch(source)
@@ -20,7 +27,7 @@ function Dropdown({ source, dataToggle, dataLodgingId }) {
 		return <span>Problème lors du chargement des données</span>
 	}
 
-	// Fonction pour gérer l'affichage des items
+	// Function to render dropdown item
 	const renderDropdownItem = (title, content, index, customClass) => {
 		const isOpen = openIndices.includes(index)
 
@@ -32,9 +39,9 @@ function Dropdown({ source, dataToggle, dataLodgingId }) {
 						if (isOpen) {
 							setOpenIndices(
 								openIndices.filter((i) => i !== index)
-							) // Fermer
+							) // close dropdown
 						} else {
-							setOpenIndices([...openIndices, index]) // Ouvrir
+							setOpenIndices([...openIndices, index]) // open dropdown
 						}
 					}}
 				>
@@ -51,16 +58,16 @@ function Dropdown({ source, dataToggle, dataLodgingId }) {
 		)
 	}
 
-	// Filtrer les données pour trouver l'élément correspondant à validLodgingId
+	// Filter data to find dataId === validLodgingId
 	if (source === '/data/data.json') {
 		const lodging = data.find((item) => item.id === validLodgingId)
 		const { equipments, description } = lodging
-		// Si l'hébergement n'est pas trouvé
+
 		if (!lodging) {
 			return <span>Aucun hébergement trouvé</span>
 		}
 
-		// Gérer les équipements et la description
+		// display equipments
 		if (dataToggle === 'equipments') {
 			return renderDropdownItem(
 				'Équipements',
@@ -70,6 +77,7 @@ function Dropdown({ source, dataToggle, dataLodgingId }) {
 			)
 		}
 
+		// display description
 		if (dataToggle === 'description') {
 			return renderDropdownItem(
 				'Description',
@@ -80,6 +88,7 @@ function Dropdown({ source, dataToggle, dataLodgingId }) {
 		}
 	}
 
+	// display about page
 	if (source === '/data/about.json') {
 		return (
 			<div className='about'>

@@ -4,6 +4,12 @@ import GalleryItem from '../GalleryItem/index'
 import { useFetch } from '../../utils/hooks'
 import { useNavigate } from 'react-router-dom'
 
+/**
+ * create gallery on home page
+ * @param {string} id - id of the lodging
+ * @param {string} cover - cover image of the lodging
+ * @param {string} title - title of the lodging
+ */
 function Gallery() {
 	const { data, isLoading, error } = useFetch(`/data/data.json`)
 	const navigate = useNavigate()
