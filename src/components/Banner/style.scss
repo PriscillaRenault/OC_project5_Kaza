@@ -9,6 +9,13 @@
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+	&[data-background] {
+		background-image: linear-gradient(
+				rgba(0, 0, 0, 0.6),
+				rgba(0, 0, 0, 0.6)
+			),
+			url(attr(data-background));
+	}
 	&__title {
 		@include utils.font(48px, utils.$neutral-0, bold);
 		text-shadow: -1px -1px 0 utils.$outline, 1px -1px 0 utils.$outline,
@@ -19,7 +26,7 @@
 	.banner {
 		@include utils.flexbox(row, start, center);
 		height: 111px;
-		margin: 10px;
+		margin: map-get(utils.$margin, small-screen);
 		padding: 0 20px;
 
 		&__title {

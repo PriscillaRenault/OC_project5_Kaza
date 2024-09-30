@@ -2,7 +2,7 @@
 .dropdown {
 	background-color: utils.$primary;
 	border-radius: 5px;
-	margin: 20px 10px;
+	margin: map-get(utils.$margin, large-screen);
 	&:hover {
 		cursor: pointer;
 	}
@@ -47,7 +47,7 @@
 		}
 		&__lodging {
 			width: 97%;
-			margin: 10px;
+			margin: map-get(utils.$margin, small-screen);
 		}
 	}
 	.about {

@@ -3,7 +3,7 @@
 .host {
 	@include utils.flexbox(row, end, center, 10);
 	max-width: 1240px;
-	margin: 20px 10px;
+	margin: map-get(utils.$margin, large-screen);
 
 	&__name {
 		@include utils.font(18px, utils.$primary, medium);
@@ -17,7 +17,7 @@
 }
 @media screen and (max-width: 768px) {
 	.host {
-		margin: 10px;
+		margin: map-get(utils.$margin, small-screen);
 		&__name {
 			@include utils.font(12px, utils.$primary, medium);
 		}

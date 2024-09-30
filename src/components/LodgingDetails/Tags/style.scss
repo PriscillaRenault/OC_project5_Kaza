@@ -2,7 +2,7 @@
 .tag {
 	@include utils.flexbox(row, start, center, 10, nowrap);
 	max-width: 1240px;
-	margin: 10px 10px;
+	margin: 10px;
 	&__items {
 		@include utils.font(14px, utils.$neutral-0, bold);
 		background-color: utils.$primary;

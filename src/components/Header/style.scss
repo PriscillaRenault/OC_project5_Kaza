@@ -13,7 +13,7 @@
 @media screen and (max-width: 768px) {
 	.header {
 		height: 46px;
-		margin: 10px;
+		margin: map-get(utils.$margin, small-screen);
 		&__logo {
 			margin: 0;
 			height: 43px;

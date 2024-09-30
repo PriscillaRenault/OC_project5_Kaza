@@ -3,13 +3,7 @@ import './style.scss'
 
 function Banner({ title, backgroundImage }) {
 	return (
-		<div
-			className='banner'
-			style={{
-				backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-				url(${backgroundImage}) `,
-			}}
-		>
+		<div className='banner' data-background={backgroundImage}>
 			<h1 className='banner__title'>{title}</h1>
 		</div>
 	)

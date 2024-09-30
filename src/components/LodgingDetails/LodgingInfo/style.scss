@@ -3,7 +3,7 @@
 	@include utils.flexbox(column, start, start, 10, nowrap);
 	max-width: 1240px;
 	width: 100%;
-	margin: 20px 10px;
+	margin: map-get(utils.$margin, large-screen);
 	&__title {
 		@include utils.font(36px, utils.$primary, medium);
 	}
