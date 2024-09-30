@@ -54,7 +54,7 @@ function Dropdown({ source, dataToggle, dataLodgingId }) {
 	// Filtrer les données pour trouver l'élément correspondant à validLodgingId
 	if (source === '/data/data.json') {
 		const lodging = data.find((item) => item.id === validLodgingId)
-
+		const { equipments, description } = lodging
 		// Si l'hébergement n'est pas trouvé
 		if (!lodging) {
 			return <span>Aucun hébergement trouvé</span>
@@ -64,9 +64,7 @@ function Dropdown({ source, dataToggle, dataLodgingId }) {
 		if (dataToggle === 'equipments') {
 			return renderDropdownItem(
 				'Équipements',
-				lodging.equipments.map((item, index) => (
-					<p key={index}>{item}</p>
-				)),
+				equipments.map((item, index) => <p key={index}>{item}</p>),
 				0,
 				'dropdown__lodging'
 			)
@@ -75,7 +73,7 @@ function Dropdown({ source, dataToggle, dataLodgingId }) {
 		if (dataToggle === 'description') {
 			return renderDropdownItem(
 				'Description',
-				<p>{lodging.description}</p>,
+				<p>{description}</p>,
 				1,
 				'dropdown__lodging'
 			)
@@ -85,11 +83,11 @@ function Dropdown({ source, dataToggle, dataLodgingId }) {
 	if (source === '/data/about.json') {
 		return (
 			<div className='about'>
-				{data.map((item) =>
+				{data.map(({ title, content }) =>
 					renderDropdownItem(
-						item.title,
-						<p>{item.content}</p>,
-						item.title,
+						title,
+						<p>{content}</p>,
+						title,
 						'dropdown__about'
 					)
 				)}

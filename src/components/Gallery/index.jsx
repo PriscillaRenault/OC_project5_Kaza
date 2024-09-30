@@ -21,13 +21,13 @@ function Gallery() {
 
 	return (
 		<ul className='gallery'>
-			{data.map((item) => (
+			{data.map(({ id, cover, title }) => (
 				<GalleryItem
-					key={item.id}
-					id={item.id}
-					cover={item.cover}
-					title={item.title}
-					onClick={() => handleClick(item.id)}
+					key={id}
+					id={id}
+					cover={cover}
+					title={title}
+					onClick={() => handleClick(id)}
 				/>
 			))}
 		</ul>

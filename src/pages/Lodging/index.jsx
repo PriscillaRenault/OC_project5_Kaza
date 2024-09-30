@@ -32,25 +32,22 @@ function Lodging() {
 	if (!lodging) {
 		return <Error />
 	}
-
+	const { pictures, title, location, tags, host, rating } = lodging
 	return (
 		<div>
-			<Slider pictures={lodging.pictures} />
+			<Slider pictures={pictures} />
 			<div className='lodging-page'>
 				<div className='lodging-page__text'>
 					<LodgingInfo
 						className='lodging-page__text--title'
-						title={lodging.title}
-						location={lodging.location}
+						title={title}
+						location={location}
 					/>
-					<Tags dataTags={lodging.tags} />
+					<Tags dataTags={tags} />
 				</div>
 				<div className='lodging-page__host-rating'>
-					<Host
-						name={lodging.host.name}
-						picture={lodging.host.picture}
-					/>
-					<Rating dataRating={lodging.rating} />
+					<Host name={host.name} picture={host.picture} />
+					<Rating dataRating={rating} />
 				</div>
 			</div>
 			<div className='lodging-page__dropdown'>

@@ -4,7 +4,12 @@ import PropTypes from 'prop-types'
 
 function GalleryItem({ id, cover, title, onClick }) {
 	return (
-		<li key={id} className='gallery__item' onClick={onClick}>
+		<li
+			key={id}
+			className='gallery__item'
+			onClick={onClick}
+			data-cover={cover}
+		>
 			<div
 				className='gallery__item--cover'
 				style={{
