@@ -21,21 +21,21 @@ function Slider({ pictures }) {
 					<img
 						className='slider__img'
 						src={pictures[0]}
-						alt='Image 1'
+						alt='Image'
 					/>
 				</div>
 			</div>
 		)
 	}
 
-	// Fonction pour aller à l'image suivante
+	// next image
 	const nextSlide = () => {
 		setCurrentIndex((prevIndex) =>
 			prevIndex === pictures.length - 1 ? 0 : prevIndex + 1
 		)
 	}
 
-	// Fonction pour aller à l'image précédente
+	// previous image
 	const prevSlide = () => {
 		setCurrentIndex((prevIndex) =>
 			prevIndex === 0 ? pictures.length - 1 : prevIndex - 1
@@ -60,8 +60,8 @@ function Slider({ pictures }) {
 			<div className='slider__item'>
 				<img
 					className='slider__img'
-					src={pictures[currentIndex]} // Utilisation de la prop pictures
-					alt={`Image ${currentIndex + 1}`} // Modifiez l'alt en fonction de vos besoins
+					src={pictures[currentIndex]}
+					alt={`Image_${currentIndex + 1}`} // Modifiez l'alt en fonction de vos besoins
 				/>
 				<div className='slider__counter'>
 					{currentIndex + 1}/{pictures.length}{' '}

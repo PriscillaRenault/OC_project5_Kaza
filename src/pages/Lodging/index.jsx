@@ -24,7 +24,7 @@ function Lodging() {
 		return <span>Chargement en cours...</span>
 	}
 	if (error) {
-		return <span>Problème lors du chargement des données</span>
+		return <Error />
 	}
 
 	//filter lodging by id

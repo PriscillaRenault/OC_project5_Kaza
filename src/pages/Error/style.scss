@@ -1,9 +1,9 @@
 @use '../../scss/utils/main.scss' as utils;
 .error {
-	@include utils.flexbox(column, space-around, center, 100);
-	margin: 100px 0;
+	@include utils.flexbox(column, space-around, center, 60);
+	margin: 80px 0;
 	&__title {
-		@include utils.font(288px, utils.$primary, bold);
+		@include utils.font(15rem, utils.$primary, bold);
 	}
 	&__message {
 		@include utils.font(36px, utils.$primary, medium);
