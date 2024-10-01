@@ -3,7 +3,7 @@
 	@include utils.flexbox(column, space-around, center, 60);
 	margin: 80px 0;
 	&__title {
-		@include utils.font(15rem, utils.$primary, bold);
+		@include utils.font(288px, utils.$primary, bold);
 	}
 	&__message {
 		@include utils.font(36px, utils.$primary, medium);

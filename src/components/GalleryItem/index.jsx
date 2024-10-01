@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 
 /**
  * Create item in gallery
- * @param {string} id - id of the lodging
- * @param {string} cover - cover image of the lodging
- * @param {string} title - title of the lodging
- * @param {function} onClick - function to access the lodging page
+ * @param {string} id
+ * @param {string} cover
+ * @param {string} title
+ * @param {function} onClick access lodging page
  * @returns
  */
 

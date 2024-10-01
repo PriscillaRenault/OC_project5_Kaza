@@ -6,9 +6,9 @@
 
 	&__star {
 		font-size: 24px;
-		color: utils.$neutral-200; // Couleur par défaut : gris
+		color: utils.$neutral-200;
 		&--filled {
-			color: utils.$primary; // Couleur rouge pour les étoiles remplies
+			color: utils.$primary;
 		}
 	}
 }

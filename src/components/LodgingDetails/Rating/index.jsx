@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 function Rating({ dataRating }) {
-	// Détermine le nombre d'étoiles pleines (rouges) et le reste (grises)
 	const rating = dataRating
 	const ratingNumber = parseInt(rating)
 	const totalStars = 5

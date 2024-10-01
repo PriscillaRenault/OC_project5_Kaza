@@ -8,14 +8,14 @@ import { useFetch } from '../../utils/hooks'
 import { IdLodgingContext } from '../../utils/context'
 
 /**
- * Create dropdown component use on about page () and lodging page to display equipments and description
+ * Create dropdown component use on about page and lodging page to display equipments and description
  * @param {string} source - The source of the data
- * @param {string} dataToggle - The data to display equipments / description
- * @param {string} dataLodgingId - The id of the lodging
+ * @param {string} dataToggle - The toggle to display equipments / description
+ * @param {string} dataLodgingId
  */
 
 function Dropdown({ source, dataToggle, dataLodgingId }) {
-	const [openIndices, setOpenIndices] = useState([]) // open index state
+	const [openIndices, setOpenIndices] = useState([]) // open dropdown
 	const { data, isLoading, error } = useFetch(source)
 	const { lodgingId } = useContext(IdLodgingContext)
 	const validLodgingId = dataLodgingId || lodgingId

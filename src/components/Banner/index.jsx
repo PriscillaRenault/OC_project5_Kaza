@@ -2,9 +2,9 @@
 import './style.scss'
 
 /**
- * Create banner use on about page and gallery page
- * @param {string} title - The title display on the banner
- * @param {string} backgroundImageClass - The class to apply background image about / home
+ * Create banner use on about and gallery page
+ * @param {string} title
+ * @param {string} backgroundImageClass
  */
 
 function Banner({ title, backgroundImageClass }) {

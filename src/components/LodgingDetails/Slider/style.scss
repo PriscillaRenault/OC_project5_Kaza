@@ -1,6 +1,5 @@
 @use '../../../scss/utils/main.scss' as utils;
 
-// Styles pour le slider
 .slider {
 	position: relative;
 	max-width: 1240px;
@@ -26,9 +25,9 @@
 
 	&__counter {
 		position: absolute;
-		top: 90%; // Centrer verticalement
-		left: 50%; // Centrer horizontalement
-		transform: translate(-50%, -50%); // Ajuster pour centrer parfaitement
+		top: 90%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 		padding: 5px 10px;
 		border-radius: 5px;
 		@include utils.font(18px, utils.$neutral-0);

@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 function Slider({ pictures }) {
-	const [currentIndex, setCurrentIndex] = useState(0) // état pour l'image affichée
+	const [currentIndex, setCurrentIndex] = useState(0)
 
 	if (!pictures || pictures.length === 0) {
 		return <span>Aucune image à afficher</span>
@@ -28,14 +28,14 @@ function Slider({ pictures }) {
 		)
 	}
 
-	// next image
+	// next
 	const nextSlide = () => {
 		setCurrentIndex((prevIndex) =>
 			prevIndex === pictures.length - 1 ? 0 : prevIndex + 1
 		)
 	}
 
-	// previous image
+	// previous
 	const prevSlide = () => {
 		setCurrentIndex((prevIndex) =>
 			prevIndex === 0 ? pictures.length - 1 : prevIndex - 1
@@ -61,11 +61,10 @@ function Slider({ pictures }) {
 				<img
 					className='slider__img'
 					src={pictures[currentIndex]}
-					alt={`Image_${currentIndex + 1}`} // Modifiez l'alt en fonction de vos besoins
+					alt={`Image_${currentIndex + 1}`}
 				/>
 				<div className='slider__counter'>
 					{currentIndex + 1}/{pictures.length}{' '}
-					{/* Mettez à jour le compteur */}
 				</div>
 			</div>
 		</div>
