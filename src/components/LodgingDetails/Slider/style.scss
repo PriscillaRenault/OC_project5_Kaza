@@ -1,19 +1,25 @@
-@use '../../../scss/utils/main.scss' as utils;
-
 .slider {
 	position: relative;
-	max-width: 1240px;
-	width: 97%;
+	max-width: 1220px;
+	width: 100%;
 	margin: auto;
 	height: 415px;
+	overflow: hidden;
+
+	&__container {
+		display: flex;
+		transition: transform 0.5s ease-in-out;
+		width: 100%;
+	}
 
 	&__item {
+		min-width: 100%;
+		transition: transform 0.5s ease-in-out;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		position: relative;
-		z-index: 1;
+		border-radius: 25px;
 	}
 
 	&__img {
@@ -30,7 +36,8 @@
 		transform: translate(-50%, -50%);
 		padding: 5px 10px;
 		border-radius: 5px;
-		@include utils.font(18px, utils.$neutral-0);
+		color: #fff;
+		font-size: 18px;
 	}
 
 	&__controls {
@@ -45,20 +52,21 @@
 
 	&__chevron {
 		cursor: pointer;
-		@include utils.font(36px, utils.$neutral-0, bold);
+		color: #fff;
+		font-size: 36px;
 		padding: 0 1rem;
 	}
 }
+
 @media screen and (max-width: 768px) {
 	.slider {
 		height: 255px;
 		width: 97%;
 		&__img {
 			height: 255px;
-			margin: 0 10px;
 		}
 		&__chevron {
-			@include utils.font(24px, utils.$neutral-0, bold);
+			font-size: 24px;
 		}
 		&__counter {
 			display: none;
