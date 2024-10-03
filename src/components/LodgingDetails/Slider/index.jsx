@@ -42,7 +42,7 @@ function Slider({ pictures }) {
 		setIsManualControl(true)
 	}
 
-	// delete the transition when the first or last image is displayed
+	// delete the transition when the first or last image is displayed without rewind effect
 	useEffect(() => {
 		if (currentIndex === 0) {
 			setTimeout(() => {

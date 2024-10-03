@@ -1,11 +1,13 @@
-import '../../scss/base/base.scss'
-import './style.scss'
-import PropTypes from 'prop-types'
 import { useState, useContext } from 'react'
+import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
+
 import { useFetch } from '../../utils/hooks'
 import { IdLodgingContext } from '../../utils/context'
+
+// import '../../scss/base/base.scss'
+import './style.scss'
 
 /**
  * Create dropdown component use on about page and lodging page to display equipments and description
@@ -48,7 +50,7 @@ function Dropdown({ source, dataToggle, dataLodgingId }) {
 					<summary className='dropdown__title'>
 						<p>{title}</p>
 						<FontAwesomeIcon
-							icon={isOpen ? faChevronUp : faChevronDown}
+							icon={faChevronUp}
 							className='dropdown__icon'
 						/>
 					</summary>

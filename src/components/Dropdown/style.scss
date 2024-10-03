@@ -3,6 +3,12 @@
 	background-color: utils.$primary;
 	border-radius: 5px;
 	margin: map-get(utils.$margin, large-screen);
+	&__icon {
+		transition: transform 0.3s ease;
+	}
+	details[open] &__icon {
+		transform: rotate(-180deg);
+	}
 	&:hover {
 		cursor: pointer;
 	}
