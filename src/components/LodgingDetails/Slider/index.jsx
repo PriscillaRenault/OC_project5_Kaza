@@ -8,10 +8,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 function Slider({ pictures }) {
-	const [currentIndex, setCurrentIndex] = useState(1) // Commencer à 1 pour éviter le rembobinage dès le début
-	const [transitionEnabled, setTransitionEnabled] = useState(true) // Contrôle de la transition
+	const [currentIndex, setCurrentIndex] = useState(1)
+	const [transitionEnabled, setTransitionEnabled] = useState(true)
+	const [isManualControl, setIsManualControl] = useState(false)
 
-	// Ajouter les images dupliquées pour une transition fluide
 	const enhancedPictures = [
 		pictures[pictures.length - 1],
 		...pictures,
@@ -20,48 +20,70 @@ function Slider({ pictures }) {
 
 	// Automatic slide change
 	useEffect(() => {
-		if (pictures && pictures.length > 1) {
-			const newInterval = setInterval(() => {
-				nextSlide() // Passer automatiquement à la diapositive suivante
+		let intervalId
+		if (pictures && pictures.length > 1 && !isManualControl) {
+			intervalId = setInterval(() => {
+				nextSlide()
 			}, 5000)
-
-			return () => {
-				clearInterval(newInterval)
-			}
 		}
-	}, [pictures]) // Ajout de 'pictures' comme dépendance
+
+		return () => {
+			if (intervalId) clearInterval(intervalId)
+		}
+	}, [pictures, isManualControl])
 
 	const nextSlide = () => {
 		setCurrentIndex((prevIndex) => prevIndex + 1)
+		setIsManualControl(true)
 	}
 
 	const prevSlide = () => {
 		setCurrentIndex((prevIndex) => prevIndex - 1)
+		setIsManualControl(true)
 	}
 
-	// Contrôler la transition quand on passe dupliqué à réel
+	// delete the transition when the first or last image is displayed
 	useEffect(() => {
 		if (currentIndex === 0) {
-			// Désactiver temporairement la transition pour sauter de la première image dupliquée à la vraie dernière image
 			setTimeout(() => {
 				setTransitionEnabled(false)
 				setCurrentIndex(pictures.length)
-			}, 300) // Le délai doit correspondre à la durée de la transition
+			}, 100)
 
-			setTimeout(() => setTransitionEnabled(true), 350) // Réactiver la transition
+			setTimeout(() => setTransitionEnabled(true), 350)
 		} else if (currentIndex === enhancedPictures.length - 1) {
-			// Idem, mais pour la dernière image dupliquée à la vraie première
 			setTimeout(() => {
 				setTransitionEnabled(false)
 				setCurrentIndex(1)
-			}, 300)
+			}, 200)
 
 			setTimeout(() => setTransitionEnabled(true), 350)
 		}
-	}, [currentIndex, enhancedPictures.length, pictures.length]) // Ajout de 'enhancedPictures.length' et 'pictures.length'
+	}, [currentIndex, enhancedPictures.length, pictures.length])
 
-	if (!pictures || pictures.length === 0) {
-		return <span>Aucune image à afficher</span>
+	// Restart the automatic slide after a manual interaction
+	useEffect(() => {
+		if (isManualControl) {
+			const timeoutId = setTimeout(() => {
+				setIsManualControl(false)
+			}, 5000)
+
+			return () => clearTimeout(timeoutId)
+		}
+	}, [isManualControl])
+
+	if (pictures.length === 1) {
+		return (
+			<div className='slider'>
+				<div className='slider__container'>
+					<img
+						className='slider__img'
+						src={pictures[0]}
+						alt='Image_1'
+					/>
+				</div>
+			</div>
+		)
 	}
 
 	return (
@@ -85,7 +107,7 @@ function Slider({ pictures }) {
 					transform: `translateX(-${currentIndex * 100}%)`,
 					transition: transitionEnabled
 						? 'transform 0.3s ease-in-out'
-						: 'none', // Gérer la transition
+						: 'none',
 				}}
 			>
 				{enhancedPictures.map((picture, index) => (
