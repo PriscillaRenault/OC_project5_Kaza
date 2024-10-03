@@ -24,7 +24,7 @@ function Slider({ pictures }) {
 		if (pictures && pictures.length > 1 && !isManualControl) {
 			intervalId = setInterval(() => {
 				nextSlide()
-			}, 5000)
+			}, 3000)
 		}
 
 		return () => {
