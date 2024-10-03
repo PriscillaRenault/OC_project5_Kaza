@@ -18,7 +18,7 @@ function Slider({ pictures }) {
 				setCurrentIndex((prevIndex) =>
 					prevIndex === pictures.length - 1 ? 0 : prevIndex + 1
 				)
-			}, 3000)
+			}, 5000)
 			setIntervalId(newInterval)
 
 			return () => {
@@ -55,7 +55,7 @@ function Slider({ pictures }) {
 				setCurrentIndex((prevIndex) =>
 					prevIndex === pictures.length - 1 ? 0 : prevIndex + 1
 				)
-			}, 5000)
+			}, 3000)
 		)
 	}
 

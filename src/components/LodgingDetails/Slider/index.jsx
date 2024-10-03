@@ -8,56 +8,57 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 function Slider({ pictures }) {
-	const [currentIndex, setCurrentIndex] = useState(0)
-	const [intervalId, setIntervalId] = useState(null)
+	const [currentIndex, setCurrentIndex] = useState(1) // Commencer à 1 pour éviter le rembobinage dès le début
+	const [transitionEnabled, setTransitionEnabled] = useState(true) // Contrôle de la transition
+
+	// Ajouter les images dupliquées pour une transition fluide
+	const enhancedPictures = [
+		pictures[pictures.length - 1],
+		...pictures,
+		pictures[0],
+	]
 
 	// Automatic slide change
 	useEffect(() => {
 		if (pictures && pictures.length > 1) {
 			const newInterval = setInterval(() => {
-				setCurrentIndex((prevIndex) =>
-					prevIndex === pictures.length - 1 ? 0 : prevIndex + 1
-				)
+				nextSlide() // Passer automatiquement à la diapositive suivante
 			}, 5000)
-			setIntervalId(newInterval)
 
 			return () => {
 				clearInterval(newInterval)
 			}
 		}
-	}, [pictures])
+	}, [pictures]) // Ajout de 'pictures' comme dépendance
 
-	// Manual changes
 	const nextSlide = () => {
-		clearInterval(intervalId)
-		setCurrentIndex((prevIndex) =>
-			prevIndex === pictures.length - 1 ? 0 : prevIndex + 1
-		)
-		// Redémarrer l'intervalle
-		setIntervalId(
-			setInterval(() => {
-				setCurrentIndex((prevIndex) =>
-					prevIndex === pictures.length - 1 ? 0 : prevIndex + 1
-				)
-			}, 5000)
-		)
+		setCurrentIndex((prevIndex) => prevIndex + 1)
 	}
 
-	// Manual previous
 	const prevSlide = () => {
-		clearInterval(intervalId) // Arrêter l'intervalle actif
-		setCurrentIndex((prevIndex) =>
-			prevIndex === 0 ? pictures.length - 1 : prevIndex - 1
-		)
-		// Redémarrer l'intervalle
-		setIntervalId(
-			setInterval(() => {
-				setCurrentIndex((prevIndex) =>
-					prevIndex === pictures.length - 1 ? 0 : prevIndex + 1
-				)
-			}, 3000)
-		)
+		setCurrentIndex((prevIndex) => prevIndex - 1)
 	}
+
+	// Contrôler la transition quand on passe dupliqué à réel
+	useEffect(() => {
+		if (currentIndex === 0) {
+			// Désactiver temporairement la transition pour sauter de la première image dupliquée à la vraie dernière image
+			setTimeout(() => {
+				setTransitionEnabled(false)
+				setCurrentIndex(pictures.length)
+			}, 300) // Le délai doit correspondre à la durée de la transition
+
+			setTimeout(() => setTransitionEnabled(true), 350) // Réactiver la transition
+		} else if (currentIndex === enhancedPictures.length - 1) {
+			// Idem, mais pour la dernière image dupliquée à la vraie première
+			setTimeout(() => {
+				setTransitionEnabled(false)
+				setCurrentIndex(1)
+			}, 300)
+
+			setTimeout(() => setTransitionEnabled(true), 350)
+		}
+	}, [currentIndex, enhancedPictures.length, pictures.length]) // Ajout de 'enhancedPictures.length' et 'pictures.length'
 
 	if (!pictures || pictures.length === 0) {
 		return <span>Aucune image à afficher</span>
@@ -82,9 +83,12 @@ function Slider({ pictures }) {
 				className='slider__container'
 				style={{
 					transform: `translateX(-${currentIndex * 100}%)`,
+					transition: transitionEnabled
+						? 'transform 0.3s ease-in-out'
+						: 'none', // Gérer la transition
 				}}
 			>
-				{pictures.map((picture, index) => (
+				{enhancedPictures.map((picture, index) => (
 					<div className='slider__item' key={index}>
 						<img
 							className='slider__img'
@@ -96,7 +100,7 @@ function Slider({ pictures }) {
 			</div>
 
 			<div className='slider__counter'>
-				{currentIndex + 1}/{pictures.length}
+				{currentIndex}/{pictures.length}
 			</div>
 		</div>
 	)
